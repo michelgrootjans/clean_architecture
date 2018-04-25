@@ -16,4 +16,9 @@ public class AccountAdministrationServiceImpl implements AccountAdministrationSe
     public List<Account> getAccounts() {
         return repository.getAccounts();
     }
+
+    @Override
+    public Account getAccount(Long id) {
+        return repository.getAccount(id);
+    }
 }

@@ -13,4 +13,9 @@ public class InMemoryRepository implements AccountRepository {
     public List<Account> getAccounts() {
         return accounts;
     }
+
+    @Override
+    public Account getAccount(Long id) {
+        return accounts.stream().filter(a -> a.getId() == id).findFirst().get();
+    }
 }
