@@ -21,4 +21,9 @@ public class AccountAdministrationServiceImpl implements AccountAdministrationSe
     public Account getAccount(Long id) {
         return repository.getAccount(id);
     }
+
+    @Override
+    public void create(Account account) {
+        repository.create(account);
+    }
 }

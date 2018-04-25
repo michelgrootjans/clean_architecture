@@ -6,4 +6,6 @@ public interface AccountRepository {
     List<Account> getAccounts();
 
     Account getAccount(Long id);
+
+    void create(Account account);
 }

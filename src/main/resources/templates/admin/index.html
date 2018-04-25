@@ -5,7 +5,14 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Accounts</h1>
+<h1>New Account</h1>
+<form action="/admin/accounts" method="post">
+    Owner: <input type="text" name="owner">
+    Credits: <input type="text" name="credits">
+    <input type="submit" value="Create Account">
+</form>
+
+<h1>Existing Accounts</h1>
 <ul>
     <li th:each="account : ${accounts}">
         <a th:text="${account.owner}" th:href="@{/admin/accounts/{id}(id=${account.id})}">Owner</a>

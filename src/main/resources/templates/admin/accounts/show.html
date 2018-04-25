@@ -6,7 +6,9 @@
 </head>
 <body>
 <a href="/admin">Back</a>
-<h1 th:text="${account.owner}">Owner</h1>
+<h1>
+    <span th:text="${account.owner}">owner</span> - <span th:text="${account.credits}">10</span> credits
+</h1>
 </body>
 </html>
 
