@@ -1,4 +1,4 @@
-package hello;
+package cashless.vo;
 
 import java.util.ArrayList;
 import java.util.List;

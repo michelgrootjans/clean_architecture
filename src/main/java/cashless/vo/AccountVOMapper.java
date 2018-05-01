@@ -1,4 +1,7 @@
-package hello;
+package cashless.vo;
+
+import cashless.domain.Transaction;
+import cashless.domain.Account;
 
 public class AccountVOMapper {
     public static AccountVO map(Account account) {

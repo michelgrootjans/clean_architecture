@@ -1,4 +1,6 @@
-package hello;
+package cashless.repositories;
+
+import cashless.domain.Account;
 
 import java.util.Collection;
 

@@ -17,7 +17,6 @@
 
     <ul>
         <li th:each="transaction, stat : ${account.transactions}">
-            <p th:text="|${transaction.description}: ${transaction.credits}|">Owner: 10 credits</p>
             <input type="text"
                    th:name="|transactions[${stat.index}].description|"
                    th:value="${transaction.description}" />

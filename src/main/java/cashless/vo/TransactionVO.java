@@ -1,6 +1,6 @@
-package hello;
+package cashless.vo;
 
-public class Transaction {
+public class TransactionVO {
     private int credits;
     private String description;
 
@@ -12,11 +12,11 @@ public class Transaction {
         return credits;
     }
 
-    public String getDescription() {
-        return description;
-    }
-
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getDescription() {
+        return description;
     }
 }

@@ -1,4 +1,4 @@
-package hello;
+package cashless.domain;
 
 import java.util.ArrayList;
 import java.util.List;

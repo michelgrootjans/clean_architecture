@@ -1,5 +1,7 @@
-package hello;
+package cashless.repositories;
 
+import cashless.domain.Transaction;
+import cashless.domain.Account;
 import org.springframework.stereotype.Service;
 
 import java.util.*;

@@ -1,4 +1,4 @@
-package hello;
+package cashless.controllers;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
