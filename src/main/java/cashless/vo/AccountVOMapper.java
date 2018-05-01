@@ -10,6 +10,8 @@ public class AccountVOMapper {
         vo.setId(account.getId());
         vo.setOwner(account.getOwner());
         vo.setCredits(account.getCredits());
+
+        vo.getTransactions().add(new TransactionVO());
         for (Transaction transaction : account.getTransactions()) {
             vo.getTransactions().add(map(transaction));
         }

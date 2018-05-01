@@ -1,8 +1,6 @@
 package cashless.vo;
 
-import cashless.vo.AccountVO;
 import cashless.domain.Transaction;
-import cashless.vo.TransactionVO;
 import cashless.domain.Account;
 
 public class AccountMapper {
@@ -13,13 +11,14 @@ public class AccountMapper {
         account.setOwner(accountVO.getOwner());
 
         for (TransactionVO transactionVO : accountVO.getTransactions()) {
-            account.getTransactions().add(mapp(transactionVO));
+            if(transactionVO.getCredits() == 0 && transactionVO.getDescription().isEmpty()) continue;
+            account.getTransactions().add(map(transactionVO));
         }
 
         return account;
     }
 
-    private static Transaction mapp(TransactionVO transactionVO) {
+    private static Transaction map(TransactionVO transactionVO) {
         Transaction transaction = new Transaction();
 
         transaction.setDescription(transactionVO.getDescription());

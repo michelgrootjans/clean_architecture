@@ -7,7 +7,7 @@
 <body>
 <a href="/admin">Back</a>
 <h1>
-    <span th:text="${account.owner}">owner</span> - <span th:text="${account.credits}">10</span> credits
+    <span th:text="${account.owner}">owner</span>: <span th:text="${account.credits}">10</span> credits
 </h1>
 
 <form action="/admin/accounts/update" method="post">

@@ -1,10 +1,11 @@
 package cashless.repositories;
 
-import cashless.domain.Transaction;
 import cashless.domain.Account;
 import org.springframework.stereotype.Service;
 
-import java.util.*;
+import java.util.Collection;
+import java.util.HashMap;
+import java.util.Map;
 
 @Service
 public class InMemoryRepository implements AccountRepository {
