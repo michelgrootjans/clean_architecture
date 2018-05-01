@@ -2,48 +2,57 @@ package hello;
 
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Comparator;
-import java.util.List;
-import java.util.function.BinaryOperator;
+import java.util.*;
 
 @Service
 public class InMemoryRepository implements AccountRepository {
-    private List<Account> accounts = new ArrayList<>();
+    private Map<Integer, Account> accounts = new HashMap<>();
 
     public InMemoryRepository() {
-        accounts.add(buildAccount("Michel", 10));
-        accounts.add(buildAccount("Domenique", 20));
+        createAccount("Michel", 10);
+        createAccount("Domenique", 20);
     }
 
     @Override
-    public List<Account> getAccounts() {
-        return accounts;
+    public Collection<Account> getAccounts() {
+        return accounts.values();
     }
 
     @Override
     public Account getAccount(Long id) {
-        return accounts.stream().filter(a -> a.getId() == id).findFirst().get();
+        return accounts.values()
+                .stream()
+                .filter(a -> a.getId() == id)
+                .findFirst()
+                .get();
     }
 
     @Override
-    public void create(Account account) {
-        account.setId(getNextId());
-        accounts.add(account);
+    public void save(Account account) {
+        if(account.getId() == 0)
+            account.setId(getNextId());
+        accounts.put(account.getId(), account);
     }
 
+    private void createAccount(String name, int credits) {
+        Account account = buildAccount(name, credits);
+        accounts.put(account.getId(),account);
+    }
     private Account buildAccount(String owner, int credits) {
         Account account = new Account();
         int nextId = getNextId();
         account.setId(nextId);
         account.setOwner(owner);
-        account.setCredits(credits);
+        Transaction transaction = new Transaction();
+        transaction.setCredits(credits);
+        transaction.setDescription("some consumption");
+        account.getTransactions().add(transaction);
         return account;
     }
 
     private int getNextId() {
-        return accounts.stream()
+        return accounts.values()
+                .stream()
                 .map(Account::getId)
                 .reduce(0, Math::max)
                 + 1;

@@ -1,9 +1,12 @@
 package hello;
 
+import java.util.ArrayList;
+import java.util.List;
+
 public class Account {
     private int id;
     private String owner;
-    private int credits;
+    private List<Transaction> transactions = new ArrayList<>();
 
     public int getId() {
         return id;
@@ -22,10 +25,12 @@ public class Account {
     }
 
     public int getCredits() {
-        return credits;
+        return transactions.stream()
+                .map(t -> t.getCredits())
+                .reduce(0, (a,b) -> a+b);
     }
 
-    public void setCredits(int credits) {
-        this.credits = credits;
+    public List<Transaction> getTransactions() {
+        return transactions;
     }
 }

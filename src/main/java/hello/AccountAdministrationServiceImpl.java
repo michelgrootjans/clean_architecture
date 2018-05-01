@@ -2,7 +2,7 @@ package hello;
 
 import org.springframework.stereotype.Service;
 
-import java.util.List;
+import java.util.Collection;
 
 @Service
 public class AccountAdministrationServiceImpl implements AccountAdministrationService {
@@ -13,7 +13,7 @@ public class AccountAdministrationServiceImpl implements AccountAdministrationSe
     }
 
     @Override
-    public List<Account> getAccounts() {
+    public Collection<Account> getAccounts() {
         return repository.getAccounts();
     }
 
@@ -23,7 +23,7 @@ public class AccountAdministrationServiceImpl implements AccountAdministrationSe
     }
 
     @Override
-    public void create(Account account) {
-        repository.create(account);
+    public void save(Account account) {
+        repository.save(account);
     }
 }

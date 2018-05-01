@@ -9,6 +9,25 @@
 <h1>
     <span th:text="${account.owner}">owner</span> - <span th:text="${account.credits}">10</span> credits
 </h1>
+
+<form action="/admin/accounts/update" method="post">
+    <input type="submit" value="Save">
+    <input type="hidden" name="id" th:value="${account.id}">
+    <input type="text" name="owner" th:value="${account.owner}">
+
+    <ul>
+        <li th:each="transaction, stat : ${account.transactions}">
+            <p th:text="|${transaction.description}: ${transaction.credits}|">Owner: 10 credits</p>
+            <input type="text"
+                   th:name="|transactions[${stat.index}].description|"
+                   th:value="${transaction.description}" />
+            <input type="text"
+                   th:name="|transactions[${stat.index}].credits|"
+                   th:value="${transaction.credits}" />
+        </li>
+    </ul>
+
+</form>
 </body>
 </html>
 

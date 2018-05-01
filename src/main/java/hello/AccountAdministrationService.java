@@ -1,11 +1,11 @@
 package hello;
 
-import java.util.List;
+import java.util.Collection;
 
 public interface AccountAdministrationService {
-    List<Account> getAccounts();
+    Collection<Account> getAccounts();
 
     Account getAccount(Long id);
 
-    void create(Account account);
+    void save(Account account);
 }
