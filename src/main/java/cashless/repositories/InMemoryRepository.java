@@ -1,6 +1,7 @@
 package cashless.repositories;
 
 import cashless.domain.Account;
+import cashless.domain.Product;
 import org.springframework.stereotype.Service;
 
 import java.util.Collection;
@@ -8,8 +9,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 @Service
-public class InMemoryRepository implements AccountRepository {
+public class InMemoryRepository implements AccountRepository, ProductRepository {
     private Map<Integer, Account> accounts = new HashMap<>();
+    private Map<Integer, Product> products = new HashMap<>();
     static int nextId = 1;
 
     @Override
@@ -38,4 +40,20 @@ public class InMemoryRepository implements AccountRepository {
     }
 
 
+    @Override
+    public Collection<Product> getProducts() {
+        return products.values();
+    }
+
+    @Override
+    public void save(Product product) {
+        if(product.getId() == 0)
+            product.setId(getNextId());
+        products.put(product.getId(), product);
+    }
+
+    @Override
+    public Product findProduct(int productId) {
+        return products.get(productId);
+    }
 }

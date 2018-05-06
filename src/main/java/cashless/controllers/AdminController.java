@@ -2,10 +2,11 @@ package cashless.controllers;
 
 import cashless.domain.Transaction;
 import cashless.domain.Account;
+import cashless.services.ProductService;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import cashless.services.AccountAdministrationService;
+import cashless.services.AccountService;
 import cashless.vo.AccountMapper;
 import cashless.vo.AccountVO;
 import cashless.vo.AccountVOMapper;
@@ -15,10 +16,12 @@ import java.util.stream.Collectors;
 
 @Controller
 public class AdminController {
-    private AccountAdministrationService service;
+    private AccountService service;
+    private ProductService productService;
 
-    public AdminController(AccountAdministrationService service) {
+    public AdminController(AccountService service, ProductService productService) {
         this.service = service;
+        this.productService = productService;
     }
 
     @GetMapping("/admin")
@@ -50,10 +53,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/accounts/update")
-    public String update(@ModelAttribute AccountVO accountVO) {
-        service.save(AccountMapper.map(accountVO));
-        return "redirect:/admin/accounts/" + accountVO.getId();
+    @PostMapping("/admin/accounts/{accountId}")
+    public String update(@PathVariable   Long accountId, @ModelAttribute AccountVO accountVO) {
+        service.save(AccountMapper.map(accountVO, productService));
+        return "redirect:/admin/accounts/" + accountId;
     }
 
 

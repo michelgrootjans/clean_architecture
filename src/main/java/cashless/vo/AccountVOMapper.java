@@ -11,7 +11,10 @@ public class AccountVOMapper {
         vo.setOwner(account.getOwner());
         vo.setCredits(account.getCredits());
 
-        vo.getTransactions().add(new TransactionVO());
+        for (Transaction order: account.getOrders()) {
+            vo.getOrders().add(map(order));
+        }
+
         for (Transaction transaction : account.getTransactions()) {
             vo.getTransactions().add(map(transaction));
         }

@@ -8,6 +8,12 @@ public class AccountVO {
     private String owner;
     private int credits;
     private List<TransactionVO> transactions = new ArrayList<>();
+    private List<TransactionVO> orders = new ArrayList<>();
+
+    @Override
+    public String toString() {
+        return owner + ": " + credits + " credits";
+    }
 
     public void setId(int id) {
         this.id = id;
@@ -39,5 +45,13 @@ public class AccountVO {
 
     public void setTransactions(List<TransactionVO> transactions) {
         this.transactions = transactions;
+    }
+
+    public List<TransactionVO> getOrders() {
+        return orders;
+    }
+
+    public void setOrders(List<TransactionVO> orders) {
+        this.orders = orders;
     }
 }

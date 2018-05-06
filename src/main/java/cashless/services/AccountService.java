@@ -4,7 +4,7 @@ import cashless.domain.Account;
 
 import java.util.Collection;
 
-public interface AccountAdministrationService {
+public interface AccountService {
     Collection<Account> getAccounts();
 
     Account getAccount(Long id);

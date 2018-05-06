@@ -7,10 +7,10 @@ import cashless.repositories.AccountRepository;
 import java.util.Collection;
 
 @Service
-public class AccountAdministrationServiceImpl implements AccountAdministrationService {
+public class AccountServiceImpl implements AccountService {
     private AccountRepository repository;
 
-    public AccountAdministrationServiceImpl(AccountRepository repository) {
+    public AccountServiceImpl(AccountRepository repository) {
         this.repository = repository;
     }
 
@@ -26,6 +26,9 @@ public class AccountAdministrationServiceImpl implements AccountAdministrationSe
 
     @Override
     public void save(Account account) {
+        if (account.getCredits() < 0) {
+            throw new RuntimeException("Insufficient credits");
+        }
         repository.save(account);
     }
 }
