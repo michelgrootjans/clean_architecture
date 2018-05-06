@@ -10,4 +10,6 @@ public interface AccountService {
     Account getAccount(Long id);
 
     void save(Account account);
+
+    void deliver(Account account);
 }

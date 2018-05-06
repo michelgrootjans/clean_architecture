@@ -49,4 +49,11 @@ public class Account {
     public void setOrders(List<Transaction> orders) {
         this.orders = orders;
     }
+
+    public void deliver() {
+        for (Transaction order : orders) {
+            transactions.add(order);
+        }
+        orders.clear();
+    }
 }

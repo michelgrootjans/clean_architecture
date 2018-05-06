@@ -1,0 +1,49 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Account</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
+</head>
+<body>
+<a href="/admin">Back</a>
+<h1>
+    <span th:text="${account.owner}">owner</span>: <span th:text="${account.credits}">10</span> credits
+</h1>
+
+<form action="/bar" method="post">
+    <input type="hidden" name="id" th:value="${account.id}">
+    <input type="hidden" name="owner" th:value="${account.owner}">
+
+    <h2>Orders</h2>
+    <ul>
+        <li th:each="transaction, stat : ${account.orders}">
+            <p th:text="${transaction}">transaction</p>
+            <input type="hidden"
+                   th:name="|orders[${stat.index}].description|"
+                   th:value="${transaction.description}" />
+            <input type="hidden"
+                   th:name="|orders[${stat.index}].credits|"
+                   th:value="${transaction.credits}" />
+        </li>
+    </ul>
+    <input type="submit" value="Deliver Order">
+
+    <h2>Previous Transactions</h2>
+    <div th:each="transaction, stat : ${account.transactions}">
+        <p th:text="${transaction}">transaction</p>
+        <input type="hidden"
+               th:name="|transactions[${stat.index}].productId|"
+               th:value="${transaction.productId}"/>
+        <input type="hidden"
+               th:name="|transactions[${stat.index}].description|"
+               th:value="${transaction.description}"/>
+        <input type="hidden"
+               th:name="|transactions[${stat.index}].credits|"
+               th:value="${transaction.credits}"/>
+    </div>
+
+</form>
+</body>
+</html>
+
+

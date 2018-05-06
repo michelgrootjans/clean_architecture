@@ -15,6 +15,19 @@
     <input type="hidden" name="id" th:value="${account.id}">
     <input type="text" name="owner" th:value="${account.owner}">
 
+    <h2>Orders</h2>
+    <ul>
+        <li th:each="order, stat : ${account.orders}">
+            <input type="text"
+                   th:name="|orders[${stat.index}].description|"
+                   th:value="${order.description}" />
+            <input type="text"
+                   th:name="|orders[${stat.index}].credits|"
+                   th:value="${order.credits}" />
+        </li>
+    </ul>
+
+    <h2>Previous transactions</h2>
     <ul>
         <li th:each="transaction, stat : ${account.transactions}">
             <input type="text"

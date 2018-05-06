@@ -17,11 +17,9 @@ import java.util.stream.Collectors;
 @Controller
 public class AdminController {
     private AccountService service;
-    private ProductService productService;
 
-    public AdminController(AccountService service, ProductService productService) {
+    public AdminController(AccountService service) {
         this.service = service;
-        this.productService = productService;
     }
 
     @GetMapping("/admin")
@@ -39,7 +37,7 @@ public class AdminController {
         Account account = service.getAccount(id);
         AccountVO vo = AccountVOMapper.map(account);
         model.addAttribute("account", vo);
-        return "admin/accounts/show";
+        return "admin/show_account";
     }
 
     @PostMapping("/admin/accounts")
@@ -53,10 +51,10 @@ public class AdminController {
         return "redirect:/admin";
     }
 
-    @PostMapping("/admin/accounts/{accountId}")
-    public String update(@PathVariable   Long accountId, @ModelAttribute AccountVO accountVO) {
-        service.save(AccountMapper.map(accountVO, productService));
-        return "redirect:/admin/accounts/" + accountId;
+    @PostMapping("/admin/accounts/update")
+    public String update(@ModelAttribute AccountVO accountVO) {
+        service.save(AccountMapper.map(accountVO, null));
+        return "redirect:/admin/accounts/" + accountVO.getId();
     }
 
 
