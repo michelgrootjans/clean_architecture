@@ -30,6 +30,7 @@ public class BarController {
     public String index(Model model) {
         Collection<AccountVO> accounts = accountService.getAccounts()
                 .stream()
+                .filter(a -> a.getOrders().size() > 0)
                 .map(AccountVOMapper::map)
                 .collect(Collectors.toList());
         model.addAttribute("accounts", accounts);

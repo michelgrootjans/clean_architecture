@@ -5,7 +5,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
-<h1>Existing Accounts</h1>
+<h1>Orders awaiting</h1>
 <ul>
     <li th:each="account : ${accounts}">
         <a th:text="${account.owner}" th:href="@{/bar/{id}(id=${account.id})}">Owner</a>
