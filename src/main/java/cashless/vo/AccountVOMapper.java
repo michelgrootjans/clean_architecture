@@ -22,8 +22,8 @@ public class AccountVOMapper {
         return vo;
     }
 
-    private static TransactionVO map(Transaction transaction) {
-        TransactionVO transactionVO = new TransactionVO();
+    private static AccountVO.TransactionVO map(Transaction transaction) {
+        AccountVO.TransactionVO transactionVO = new AccountVO.TransactionVO();
         transactionVO.setCredits(transaction.getCredits());
         transactionVO.setDescription(transaction.getDescription());
         return transactionVO;

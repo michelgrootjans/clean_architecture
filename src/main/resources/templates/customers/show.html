@@ -18,7 +18,7 @@
     <input type="hidden" name="owner" th:value="${account.owner}">
 
     <select th:name="'orders[' + ${account.orders.size()} + ].productId">
-        <option th:each="product: ${products}" th:text="${product.name}" th:value="${product.id}">Beer</option>
+        <option th:each="product: ${products}" th:text="|${product.name}: ${product.credits} credit(s)|" th:value="${product.id}">Beer</option>
     </select>
 
     <div th:each="order, stat : ${account.orders}">

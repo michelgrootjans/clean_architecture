@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.Arrays;
 import java.util.Collection;
+import java.util.stream.Collectors;
 
 @Controller
 public class CustomerController {
@@ -23,7 +24,13 @@ public class CustomerController {
     }
 
     @GetMapping("/")
-    public String index() {
+    public String index(Model model) {
+        Collection<AccountVO> accounts = accountService.getAccounts()
+                .stream()
+                .map(AccountVOMapper::map)
+                .collect(Collectors.toList());
+        model.addAttribute("accounts", accounts);
+
         return "customers/welcome";
     }
 

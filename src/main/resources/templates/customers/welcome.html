@@ -7,8 +7,14 @@
 <body>
 <h1>Welcome to cashless</h1>
 
-<p><a href="/bar">Page for the bar</a></p>
-<p><a href="/admin">Administration</a></p>
+On bracelet beep: [
+<span th:each="account: ${accounts}">
+    <a th:text="${account.id}" th:href="${account.id}" >1</a>
+</span>]
+
+
+<p><a href="/bar">For the bar</a></p>
+<p><a href="/admin">For administrators only</a></p>
 
 </body>
 </html>

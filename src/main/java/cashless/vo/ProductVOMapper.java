@@ -21,6 +21,7 @@ public class ProductVOMapper {
         ProductVO vo = new ProductVO();
         vo.setId(product.getId());
         vo.setName(product.getName());
+        vo.setCredits(product.getCredits());
         return vo;
     }
 }

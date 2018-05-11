@@ -3,6 +3,7 @@ package cashless.vo;
 public class ProductVO {
     private int id;
     private String name;
+    private int credits;
 
     public void setId(int id) {
         this.id = id;
@@ -18,5 +19,13 @@ public class ProductVO {
 
     public String getName() {
         return name;
+    }
+
+    public void setCredits(int credits) {
+        this.credits = credits;
+    }
+
+    public int getCredits() {
+        return credits;
     }
 }

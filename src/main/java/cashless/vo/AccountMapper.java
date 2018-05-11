@@ -12,7 +12,7 @@ public class AccountMapper {
         account.setId(accountVO.getId());
         account.setOwner(accountVO.getOwner());
 
-        for (TransactionVO vo : accountVO.getOrders()) {
+        for (AccountVO.TransactionVO vo : accountVO.getOrders()) {
             if(vo.getCredits() == 0 && (vo.getDescription() == null || vo.getDescription().isEmpty())) {
                 if (vo.getProductId() != 0) {
                     Product product = productService.findProduct(vo.getProductId());
@@ -25,7 +25,7 @@ public class AccountMapper {
             account.getOrders().add(map(vo));
         }
 
-        for (TransactionVO vo : accountVO.getTransactions()) {
+        for (AccountVO.TransactionVO vo : accountVO.getTransactions()) {
             if(vo.getCredits() == 0 && vo.getDescription().isEmpty()) continue;
             account.getTransactions().add(map(vo));
         }
@@ -33,7 +33,7 @@ public class AccountMapper {
         return account;
     }
 
-    private static Transaction map(TransactionVO transactionVO) {
+    private static Transaction map(AccountVO.TransactionVO transactionVO) {
         Transaction transaction = new Transaction();
 
         transaction.setDescription(transactionVO.getDescription());
