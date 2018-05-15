@@ -5,38 +5,21 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8"/>
 </head>
 <body>
+<a href="/cashier">Back</a>
 <h1>
     <span th:text="${account.owner}">owner</span>: <span th:text="${account.credits}">10</span> credits
 </h1>
 
-<form action="/" method="post">
-
-    <h1>Orders</h1>
-
-    <input th:if="${account.credits > 0}" type="submit" value="Order">
+<form action="/cashier" method="post">
     <input type="hidden" name="id" th:value="${account.id}">
     <input type="hidden" name="owner" th:value="${account.owner}">
 
-    <select th:name="'orders[' + ${account.orders.size()} + '].productId'">
-        <option th:each="product: ${products}" th:text="|${product.name}: ${product.credits} credit(s)|" th:value="${product.id}">Beer</option>
-    </select>
+    <input type="text" th:name="'transactions[' + ${account.transactions.size()} + '].credits'">
+    <input type="hidden" th:name="'transactions[' + ${account.transactions.size()} + '].description'" value="top up">
 
-    <div th:each="order, stat : ${account.orders}">
-        <p th:text="${order}">order</p>
-        <input type="hidden"
-               th:name="|orders[${stat.index}].productId|"
-               th:value="${order.productId}"/>
-        <input type="hidden"
-               th:name="|orders[${stat.index}].description|"
-               th:value="${order.description}"/>
-        <input type="hidden"
-               th:name="|orders[${stat.index}].credits|"
-               th:value="${order.credits}"/>
-    </div>
+    <input type="submit" value="Top up">
 
-    <h1>Previous Transactions</h1>
     <div th:each="transaction, stat : ${account.transactions}">
-        <p th:text="${transaction}">transaction</p>
         <input type="hidden"
                th:name="|transactions[${stat.index}].productId|"
                th:value="${transaction.productId}"/>
@@ -47,6 +30,17 @@
                th:name="|transactions[${stat.index}].credits|"
                th:value="${transaction.credits}"/>
     </div>
+
+    <ul>
+        <li th:each="transaction, stat : ${account.orders}">
+            <input type="hidden"
+                   th:name="|orders[${stat.index}].description|"
+                   th:value="${transaction.description}" />
+            <input type="hidden"
+                   th:name="|orders[${stat.index}].credits|"
+                   th:value="${transaction.credits}" />
+        </li>
+    </ul>
 
 </form>
 </body>
