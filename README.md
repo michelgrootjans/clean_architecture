@@ -1,4 +1,6 @@
-# Simple spring boot web app 
+# Exercise in clean architecture
+The goal og this project is to refactor to a clean architecture.
+ 
 ## To run the web app:
 `./gradlew build && java -jar build/libs/gs-spring-boot-0.1.0.jar`
 
